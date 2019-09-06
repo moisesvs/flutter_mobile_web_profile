@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/Profile.dart';
+import '../widgets/Footer.dart';
 
 class BodyLoading extends StatelessWidget {
 
@@ -36,7 +37,8 @@ class BodyHome extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HeaderProfile(profile: profile),
-                    ListDisplay(profile: profile)
+                    ListDisplay(profile: profile),
+                    Footer()
                   ],
                 ), 
                 flex: 2),
