@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../data/Profile.dart';
-import '../widgets/Footer.dart';
 
 class BodyLoading extends StatelessWidget {
 
@@ -36,9 +35,7 @@ class BodyHome extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    HeaderProfile(profile: profile),
                     ListDisplay(profile: profile),
-                    Footer()
                   ],
                 ), 
                 flex: 2),
@@ -48,37 +45,6 @@ class BodyHome extends StatelessWidget {
     }
 }
 
-class HeaderProfile extends StatelessWidget {
-
-    final Profile profile;
-
-    HeaderProfile({this.profile});
-
-    @override
-    Widget build (BuildContext ctxt) {
-      return  
-            Padding (
-              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
-              child: 
-                Row(
-                  children: <Widget>[
-                  Text ("moisesvazquez.com",
-                      style: TextStyle( fontWeight: FontWeight.bold, 
-                                color: Colors.black, 
-                                fontSize: 30
-                                )            
-                  ),
-                  Text ("'s blog",
-                      style: TextStyle( fontWeight: FontWeight.bold, 
-                                color: Colors.grey, 
-                                fontSize: 30
-                      )            
-                  )]
-                )
-          );
-    }
-
-}
 
 class ListDisplay extends StatelessWidget {
 
@@ -88,16 +54,18 @@ class ListDisplay extends StatelessWidget {
 
     @override
     Widget build (BuildContext ctxt) {
-      return new ListView.builder (
+      return new ListView.separated (
         shrinkWrap: true,
         itemCount: this.profile.posts.length,
-        itemBuilder: (BuildContext ctxt, int index) => buildItem(ctxt, index)
+        itemBuilder: (BuildContext ctxt, int index) => buildItem(ctxt, index), 
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
       );
     }
 
     Widget buildItem(BuildContext ctxt, int index) {
+
       return
-      Padding (padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
+      Padding (padding: EdgeInsets.symmetric(vertical: .0, horizontal: 0.0),
       child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -105,14 +73,22 @@ class ListDisplay extends StatelessWidget {
               profile.posts[index].title,
               style: TextStyle( fontWeight: FontWeight.bold, 
                                 color: Colors.black, 
-                                fontSize: 20),
+                                fontSize: 25),
             ),
             Text(
-              profile.posts[index].description,
+              profile.posts[index].shortDescription,
               style: TextStyle( fontWeight: FontWeight.normal, 
                                 color: Colors.grey, 
-                                fontSize: 13),
+                                fontSize: 17),
             ),
+            Chip(
+                label: Text(
+                            profile.posts[index].tags[0],
+                            style: TextStyle( fontWeight: FontWeight.normal, 
+                                              color: Colors.white, 
+                                              fontSize: 10)
+                        ),
+            )
           ],
         )
       );

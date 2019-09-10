@@ -6,6 +6,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutterMobileWeb/widgets/Footer.dart';
+import 'package:flutterMobileWeb/widgets/HeaderProfile.dart';
 import 'data/Profile.dart';
 import 'package:http/http.dart' as http;
 import 'widgets/Body.dart';
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
               future: profile,
               builder: (context, snapshot) {
                 Widget body;
+                Widget header = new HeaderProfile();
+                Widget footer = new Footer();
                 if (snapshot.hasData) {
                   body = new BodyHome(profile: snapshot.data);
                 } else if (snapshot.hasError) {
@@ -51,12 +55,30 @@ class MyApp extends StatelessWidget {
                   // By default, show a loading spinner
                   body = new BodyLoading();
                 }
-
-                return Scaffold (
+                
+                return  Scaffold (
+                      resizeToAvoidBottomPadding: false,
                       backgroundColor: Colors.white,
-                      body: body
+                      body:
+
+                        Container(
+                            alignment: Alignment.center,
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: SingleChildScrollView(child:Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                  header,
+                                  body
+                              ]
+                            )
+                          )
+                        ),
+
+                      bottomNavigationBar: footer
                 );
-              },
+
+            },
         ),
     );
   }
