@@ -56,6 +56,7 @@ class ListDisplay extends StatelessWidget {
     Widget build (BuildContext ctxt) {
       return new ListView.separated (
         shrinkWrap: true,
+        primary: false,
         itemCount: this.profile.posts.length,
         itemBuilder: (BuildContext ctxt, int index) => buildItem(ctxt, index), 
         separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -65,7 +66,7 @@ class ListDisplay extends StatelessWidget {
     Widget buildItem(BuildContext ctxt, int index) {
 
       return
-      Padding (padding: EdgeInsets.symmetric(vertical: .0, horizontal: 0.0),
+      Center (
       child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
