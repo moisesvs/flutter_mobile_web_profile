@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterMobileWeb/DetailView.dart';
+import 'package:flutterMobileWeb/data/PostFeed.dart';
 import '../data/Profile.dart';
 
 class BodyLoading extends StatelessWidget {
@@ -63,43 +65,60 @@ class ListDisplay extends StatelessWidget {
       );
     }
 
-    Widget buildItem(BuildContext ctxt, int index) {
-
+    Widget buildItem(BuildContext context, int index) {
+      PostFeed post = profile.posts[index];
       return
 
       Card (
       color: Colors.white,
       elevation: 3,
-      child:  Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(title : Text(
-              profile.posts[index].title,
-              style: TextStyle( fontWeight: FontWeight.bold, 
-                                color: Colors.black, 
-                                fontSize: 25),
-            )),
-            ListTile(title : Text(
-              profile.posts[index].shortDescription,
-              style: TextStyle( fontWeight: FontWeight.normal, 
-                                color: Colors.grey, 
-                                fontSize: 17),
-            )),
-            Padding(
-              padding: EdgeInsets.only( top: 5.0, 
-                                        left: 10.0, 
-                                        bottom: 7.0),
-              child: Chip(
-                  backgroundColor: Colors.grey,
-                  label: Text(
-                            profile.posts[index].tags[0],
-                            style: TextStyle( fontWeight: FontWeight.normal, 
-                                              color: Colors.white, 
-                                              fontSize: 10)
-                        ),
-            ))
-          ],
+      child:  
+        InkWell(
+          child:
+              Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(title : 
+                  Text(
+                      post.title,
+                      style: TextStyle( fontWeight: FontWeight.bold, 
+                                        color: Colors.black, 
+                                        fontSize: 25),
+                  )
+                ),
+                ListTile(
+                  title : Text(
+                  profile.posts[index].shortDescription,
+                  style: TextStyle( fontWeight: FontWeight.normal, 
+                                    color: Colors.grey, 
+                                    fontSize: 17),
+                  
+                  )
+                ),
+                Padding(
+                  padding: EdgeInsets.only( top: 5.0, 
+                                            left: 10.0, 
+                                            bottom: 7.0),
+                  child: Chip(
+                      backgroundColor: Colors.grey,
+                      label: Text(
+                                profile.posts[index].tags[0],
+                                style: TextStyle( fontWeight: FontWeight.normal, 
+                                                  color: Colors.white, 
+                                                  fontSize: 10)
+                            ),
+                ))
+              ],
+            ),
+            onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailView( profile: this.profile, 
+                                                                        post : post)),
+                  );
+              },
         )
+       
       );
     }
 }

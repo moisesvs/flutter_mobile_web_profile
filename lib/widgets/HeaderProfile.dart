@@ -7,10 +7,10 @@ class HeaderProfile extends StatelessWidget {
       return
 
             Padding (
-              padding: EdgeInsets.only( top: 50.0, 
+              padding: EdgeInsets.only( top: 60.0, 
                                         left: 15.0, 
                                         right: 15.0, 
-                                        bottom: 5.0),
+                                        bottom: 10.0),
               child: 
                 Wrap(
                   direction: Axis.horizontal, // main axis (rows or columns)
