@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
               padding: EdgeInsets.only( top: 60.0, 
                                         left: 15.0, 
                                         right: 15.0, 
-                                        bottom: 10.0),
+                                        bottom: 35.0),
               child: 
                 Wrap(
                   direction: Axis.horizontal, // main axis (rows or columns)

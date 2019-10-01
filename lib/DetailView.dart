@@ -27,7 +27,7 @@ class DetailView extends StatelessWidget {
                 accentColor: Colors.grey,
                 
                 // Define the default Font Family
-                fontFamily: 'SourceSans',
+                fontFamily: 'Inter',
 
                 // Define the default TextTheme. Use this to specify the default
                 // text styling for headlines, titles, bodies of text, and more.
@@ -40,8 +40,6 @@ class DetailView extends StatelessWidget {
               ),
         home:  
             new Builder(builder: (BuildContext context){
-
-              Widget header = Header();
               Widget footer = Footer();
 
               return Scaffold (
@@ -60,7 +58,6 @@ class DetailView extends StatelessWidget {
                             child: SingleChildScrollView(child:Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                  header,
                                   Text(post.title, 
                                       style: TextStyle(
                                             fontSize: 14.0,

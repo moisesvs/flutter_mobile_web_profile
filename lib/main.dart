@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
                 accentColor: Colors.grey,
                 
                 // Define the default Font Family
-                fontFamily: 'SourceSans',
+                fontFamily: 'Inter',
 
                 // Define the default TextTheme. Use this to specify the default
                 // text styling for headlines, titles, bodies of text, and more.
@@ -92,22 +92,15 @@ class MyApp extends StatelessWidget {
 
 Future<Profile> fetchProfile() async {
 
-  //var connectivityResult = await (Connectivity().checkConnectivity());
-  //if ((connectivityResult == ConnectivityResult.mobile) | (connectivityResult == ConnectivityResult.wifi)) {
     final response =
         await http.get('https://moisespersonalpage.firebaseio.com/profile/0.json');
 
+    if (response.statusCode == 200) {
+        // If the call to the server was successful, parse the JSON
+        return Profile.fromJson(json.decode(response.body));
+    } else {
+        // If that call was not successful, throw an error.
+        throw Exception('Failed to load post');
+    }
     
-   // if (response.statusCode == 200) {
-      // If the call to the server was successful, parse the JSON
-      return Profile.fromJson(json.decode(response.body));
-   // } else {
-      // If that call was not successful, throw an error.
-   //   throw Exception('Failed to load post');
-   // }
-  //} else {
-      // If that call was not successful, throw an error.
-   //   throw Exception('Network not available');
-  //}
-
 }
