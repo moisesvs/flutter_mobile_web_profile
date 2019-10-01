@@ -7,10 +7,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterMobileWeb/widgets/Footer.dart';
-import 'package:flutterMobileWeb/widgets/HeaderProfile.dart';
+import 'package:flutterMobileWeb/widgets/Header.dart';
 import 'data/Profile.dart';
 import 'package:http/http.dart' as http;
 import 'widgets/Body.dart';
+import 'widgets/AppDrawer.dart';
 
 void main() => runApp(MyApp(profile: fetchProfile()));
 
@@ -41,16 +42,18 @@ class MyApp extends StatelessWidget {
                               fontSize: 14.0),
                 ),
               ),
+              
         home: FutureBuilder<Profile>(
               future: profile,
               builder: (context, snapshot) {
                 Widget body;
-                Widget header = new HeaderProfile();
+                Widget header = new Header();
                 Widget footer = new Footer();
                 if (snapshot.hasData) {
                   body = new BodyHome(profile: snapshot.data);
-                } else if (snapshot.hasError) {
-                  body = Text("${snapshot.error}");
+                } else if (snapshot.hasError | 
+                          (snapshot.connectionState == ConnectionState.none))  {
+                  body = new BodyError();
                 } else {
                   // By default, show a loading spinner
                   body = new BodyLoading();
@@ -59,6 +62,9 @@ class MyApp extends StatelessWidget {
                 return  Scaffold (
                       resizeToAvoidBottomPadding: false,
                       backgroundColor: Colors.white,
+                      drawer: const AppDrawer(
+                              permanentlyDisplay: false,
+                            ),
                       body:
 
                         Container(
@@ -85,14 +91,23 @@ class MyApp extends StatelessWidget {
 }
 
 Future<Profile> fetchProfile() async {
-  final response =
-      await http.get('https://moisespersonalpage.firebaseio.com/profile/0.json');
 
-  if (response.statusCode == 200) {
-    // If the call to the server was successful, parse the JSON
-    return Profile.fromJson(json.decode(response.body));
-  } else {
-    // If that call was not successful, throw an error.
-    throw Exception('Failed to load post');
-  }
+  //var connectivityResult = await (Connectivity().checkConnectivity());
+  //if ((connectivityResult == ConnectivityResult.mobile) | (connectivityResult == ConnectivityResult.wifi)) {
+    final response =
+        await http.get('https://moisespersonalpage.firebaseio.com/profile/0.json');
+
+    
+   // if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      return Profile.fromJson(json.decode(response.body));
+   // } else {
+      // If that call was not successful, throw an error.
+   //   throw Exception('Failed to load post');
+   // }
+  //} else {
+      // If that call was not successful, throw an error.
+   //   throw Exception('Network not available');
+  //}
+
 }

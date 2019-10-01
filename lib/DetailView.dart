@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterMobileWeb/widgets/Footer.dart';
-import 'package:flutterMobileWeb/widgets/HeaderProfile.dart';
+import 'package:flutterMobileWeb/widgets/Header.dart';
 import 'data/PostFeed.dart';
 import 'data/Profile.dart';
 
@@ -41,7 +41,7 @@ class DetailView extends StatelessWidget {
         home:  
             new Builder(builder: (BuildContext context){
 
-              Widget header = HeaderProfile();
+              Widget header = Header();
               Widget footer = Footer();
 
               return Scaffold (

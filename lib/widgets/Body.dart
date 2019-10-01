@@ -3,6 +3,40 @@ import 'package:flutterMobileWeb/DetailView.dart';
 import 'package:flutterMobileWeb/data/PostFeed.dart';
 import '../data/Profile.dart';
 
+
+class BodyError extends StatefulWidget {
+  @override
+  _BodyErrorState createState() => _BodyErrorState();
+}
+
+class _BodyErrorState extends State<BodyError> {
+
+    String error = "Error default";
+
+    void setError(String error) {
+      setState(() { this.error = error; });
+    }
+
+    @override
+    Widget build (BuildContext ctxt) {
+      return Container(
+                  decoration: new BoxDecoration(color: Colors.white),
+                  child: Center(
+                    child: Align( alignment: Alignment.center, 
+                                  child: Container (
+                                  child: Text (this.error,
+                                            style: TextStyle( fontWeight: FontWeight.bold, 
+                                                      color: Colors.black, 
+                                                      fontSize: 20
+                                                      )            
+                                        ),
+                                ) 
+                  )
+              )
+      );
+    }
+}
+
 class BodyLoading extends StatelessWidget {
 
     @override

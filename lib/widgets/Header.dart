@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HeaderProfile extends StatelessWidget {
+class Header extends StatelessWidget {
 
     @override
     Widget build (BuildContext ctxt) {
