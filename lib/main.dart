@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                       resizeToAvoidBottomPadding: false,
                       backgroundColor: Colors.white,
                       drawer: const AppDrawer(
-                              permanentlyDisplay: false,
+                              permanentlyDisplay: true,
                             ),
                       body:
 
