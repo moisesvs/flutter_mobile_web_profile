@@ -15,6 +15,15 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.1.4
 
+  # Firebase
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.6
+
+  # Flutter Bloc
+  flutter_bloc: ^4.0.0
+  meta: ^1.1.8
+  equatable: ^1.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

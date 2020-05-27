@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Router.dart';
 
 /// The navigation drawer for the app.
