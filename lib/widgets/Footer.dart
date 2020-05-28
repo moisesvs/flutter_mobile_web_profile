@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
 
@@ -18,18 +19,36 @@ class Footer extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: <Widget>
                                       [ 
-                                        Image.asset('assets/images/github.png',
-                                            width: 30,
-                                            height: 30),
+                                        GestureDetector(
+                                          onTap: () => launchUrl("https://github.com/moisesvs"), // handle your image tap here
+                                          child: 
+                                              Image.asset('assets/images/github.png',
+                                                  width: 30,
+                                                  height: 30),
+                                        ),
+
+                                        GestureDetector(
+                                          onTap: () => launchUrl("https://twitter.com/moisesvs"), // handle your image tap here
+                                          child: 
+                                              Image.asset('assets/images/twitter.png',
+                                                  width: 30,
+                                                  height: 30)
                                         
-                                        Image.asset('assets/images/twitter.png',
-                                            width: 30,
-                                            height: 30)
+                                        ),
+
 
                                       ]
               )
           )
       );     
+  }
+
+  void launchUrl (String url) async {
+    await launch(
+      url,
+      forceSafariVC: false,
+      forceWebView: false,
+    );
   }
 
 }

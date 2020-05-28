@@ -1,0 +1,3 @@
+extension launchString on double {
+  
+}
