@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterMobileWeb/DetailView.dart';
 import 'package:flutterMobileWeb/data/PostFeed.dart';
-import '../data/Profile.dart';
-
+import 'package:flutterMobileWeb/data/Profile.dart';
+import 'package:flutterMobileWeb/screens/DetailPostView/DetailPostsView.dart';
 
 class BodyError extends StatefulWidget {
   @override
@@ -81,7 +80,6 @@ class BodyHome extends StatelessWidget {
     }
 }
 
-
 class ListDisplay extends StatelessWidget {
 
     final Profile profile;
@@ -145,12 +143,12 @@ class ListDisplay extends StatelessWidget {
               ],
             ),
             onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DetailView( profile: this.profile, 
-                                                                        post : post)),
-                  );
-              },
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DetailsPostsView( profile: this.profile, 
+                                                                            post : post)),
+                );
+            },
         )
        
       );

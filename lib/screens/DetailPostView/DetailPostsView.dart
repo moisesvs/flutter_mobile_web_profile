@@ -3,16 +3,16 @@
 // found in the LICENSE file.
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutterMobileWeb/data/PostFeed.dart';
+import 'package:flutterMobileWeb/data/Profile.dart';
 import 'package:flutterMobileWeb/widgets/Footer.dart';
-import 'data/PostFeed.dart';
-import 'data/Profile.dart';
 
-class DetailView extends StatelessWidget {
-  
+class DetailsPostsView extends StatelessWidget {
+
   final Profile profile;
   final PostFeed post;
 
-  DetailView({this.profile, this.post});
+  DetailsPostsView({this.profile, this.post});
 
   // This widget is the root of your application.
   @override

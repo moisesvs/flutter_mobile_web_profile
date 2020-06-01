@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../Router.dart';
 
 /// The navigation drawer for the app.
 /// This listens to changes in the route to update which page is currently been shown
@@ -15,22 +14,23 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> with RouteAware {
   String _selectedRoute;
-  AppRouteObserver _routeObserver;
+  //AppRouteObserver _routeObserver;
+
   @override
   void initState() {
     super.initState();
-    _routeObserver = AppRouteObserver();
+    //_routeObserver = AppRouteObserver();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _routeObserver.subscribe(this, ModalRoute.of(context));
+    //_routeObserver.subscribe(this, ModalRoute.of(context));
   }
 
   @override
   void dispose() {
-    _routeObserver.unsubscribe(this);
+    //_routeObserver.unsubscribe(this);
     super.dispose();
   }
 
@@ -62,19 +62,19 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
                 ),
                 ListTile(
                   leading: const Icon(Icons.home),
-                  title: Text(PageTitles.home),
+                  title: Text("Home"),
                   onTap: () async {
-                    await _navigateTo(context, RouteNames.home);
+                    //await _navigateTo(context, RouteNames.home);
                   },
-                  selected: _selectedRoute == RouteNames.home,
+                  //selected: _selectedRoute == RouteNames.home,
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library),
-                  title: const Text(PageTitles.details),
+                  //title: const Text(PageTitles.details),
                   onTap: () async {
-                    await _navigateTo(context, RouteNames.details);
+                    //await _navigateTo(context, RouteNames.details);
                   },
-                  selected: _selectedRoute == RouteNames.details,
+                  //selected: _selectedRoute == RouteNames.details,
                 ),
               ],
             ),

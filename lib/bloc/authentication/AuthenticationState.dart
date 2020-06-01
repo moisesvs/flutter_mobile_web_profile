@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
-  @immutable
   abstract class AuthenticationState extends Equatable {
     AuthenticationState([List props = const []]) : super();
   }
 
+  @immutable
   class Uninitialized extends AuthenticationState {
     @override
     String toString() => 'Uninitialized';
@@ -14,18 +15,29 @@ import 'package:meta/meta.dart';
     List<Object> get props => throw UnimplementedError();
   }
 
-  class Authenticated extends AuthenticationState {
-    final String displayName;
-
-    Authenticated(this.displayName) : super([displayName]);
+  @immutable
+  class AuthenticationLoading extends AuthenticationState {
+    @override
+    String toString() => 'Authentication Loading';
 
     @override
-    String toString() => 'Authenticated { displayName: $displayName}';
-
-    @override
-    List<Object> get props => [displayName];
+    List<Object> get props => ['Authentication Loading'];
   }
 
+  class Authenticated extends AuthenticationState {
+
+    FirebaseUser user;
+
+    Authenticated(this.user) : super([user]);
+
+    @override
+    String toString() => 'Authenticated { displayName: ${user.displayName}}';
+
+    @override
+    List<Object> get props => [user.displayName];
+  }
+
+  @immutable
   class Unauthenticated extends AuthenticationState {
     @override
     String toString() => 'Unauthenticated';

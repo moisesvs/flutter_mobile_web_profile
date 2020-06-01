@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutterMobileWeb/repository/UserRepository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterMobileWeb/repository/AuthRepository.dart';
 import 'package:meta/meta.dart';
 
 import 'AuthenticationEvent.dart';
@@ -8,46 +9,50 @@ import 'AuthenticationState.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final UserRepository _userRepository;
+  final AuthRepository _authRepository;
+  FirebaseUser user;
 
-  AuthenticationBloc({@required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository;
+  AuthenticationBloc({@required AuthRepository authRepository})
+      : assert(authRepository != null),
+        _authRepository = authRepository;
 
   @override
   AuthenticationState get initialState => Uninitialized();
 
-  Stream<AuthenticationState> _mapAppStartedToState() async* {
+  Stream<AuthenticationState> _loginEvent({
+    String email,
+    String password,
+  }) async* {
+    yield AuthenticationLoading();
     try {
-      final isSignedIn = await _userRepository.isSignedIn();
-      if (isSignedIn) {
-        final name = await _userRepository.getUser();
-        yield Authenticated(name);
-      } else {
-        yield Unauthenticated();
+      _authRepository.app ?? await _authRepository.configure();
+      AuthResult result = await _authRepository.signInWithCredentials(email: email, 
+                                                                      password: password);
+
+      this.user = await _authRepository.getUser();
+      if (user.displayName == null) {
+        await _authRepository.updateProfile();
       }
+      yield Authenticated(result.user);
     } catch (_) {
       yield Unauthenticated();
     }
   }
-
-  Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated(await _userRepository.getUser());
-  }
-
-  Stream<AuthenticationState> _mapLoggedOutToState() async* {
+  
+  Stream<AuthenticationState> _logoutEvent() async* {
     yield Unauthenticated();
-    _userRepository.signOut();
+    _authRepository.signOut();
   }
 
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event)  async* {
-    if (event is AppStarted) {
-      yield* _mapAppStartedToState();
-    } else if (event is LoggedIn) {
-      yield* _mapLoggedInToState();
+    if (event is LoggedIn) {
+      print("Login: ${event.email} y ${event.password}");
+      yield* _loginEvent(email : event.email,
+                                      password: event.password);
     } else if (event is LoggedOut) {
-      yield* _mapLoggedOutToState();
+      yield* _logoutEvent();
     }
   }
+
 }

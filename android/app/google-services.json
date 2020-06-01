@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1030064810045",
+    "firebase_url": "https://moisespersonalpage.firebaseio.com",
+    "project_id": "moisespersonalpage",
+    "storage_bucket": "moisespersonalpage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030064810045:android:4487f9cf8f28aeb647e254",
+        "android_client_info": {
+          "package_name": "com.moises.flutter_mobile_profile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030064810045-68vdvhe8j9bvip0ml5t7g2csslnsd1l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd27dOazxpNDG6ShrNRLDW4PxOwi7EqgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030064810045-68vdvhe8j9bvip0ml5t7g2csslnsd1l3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

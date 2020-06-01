@@ -1,4 +1,4 @@
-package com.example.flutter_mobile_profile;
+package com.moises.flutter_mobile_profile;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

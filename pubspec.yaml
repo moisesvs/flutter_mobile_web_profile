@@ -6,7 +6,6 @@ version: 1.0.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  
 
 dependencies:
   flutter:
@@ -22,6 +21,10 @@ dependencies:
   meta: ^1.1.8
   equatable: ^1.1.1
 
+  # Firebase Auth
+  firebase_core: ^0.4.5
+  firebase_auth: ^0.16.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
