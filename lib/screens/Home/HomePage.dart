@@ -14,14 +14,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/HomeBody.dart';
 
-class Home extends StatefulWidget {
-  Home();
+class HomePage extends StatefulWidget {
+  static const routeName = '/home';
+
+  HomePage();
 
   @override
-  State<Home> createState() => HomeState();
+  State<HomePage> createState() => HomeState();
 }
 
-class HomeState extends State<Home> {
+class HomeState extends State<HomePage> {
 
   final ProfileRepository _profileRepository = ProfileRepository();
   final AuthRepository _authRepository = AuthRepository();
@@ -85,29 +87,23 @@ Scaffold createStructurePage (ProfileState stateProfile, AuthenticationState aut
               child: SingleChildScrollView(child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    Text(
-                    authState.toString(),
-                    style: TextStyle( fontWeight: FontWeight.bold, 
-                                      color: Colors.black, 
-                                      fontSize: 25),
-                    ),
-                    new Header(),
+                    Header(),
                     createBody(stateProfile)
                 ]
               )
             )
           ),
 
-        bottomNavigationBar: new Footer()
+        bottomNavigationBar: Footer()
   );
 }
 
 Widget createBody (ProfileState stateProfile) {
     if (stateProfile is ProfileLoaded) {
-      return new BodyHome(profile: stateProfile.profile);
+      return BodyHome(profile: stateProfile.profile);
     } else if (stateProfile is ProfileError)  {
-      return new BodyError();
+      return BodyError();
     } else {
-      return new BodyLoading();
+      return BodyLoading();
     }
 }

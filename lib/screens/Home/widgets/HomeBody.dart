@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterMobileWeb/data/PostFeed.dart';
 import 'package:flutterMobileWeb/data/Profile.dart';
-import 'package:flutterMobileWeb/screens/DetailPostView/DetailPostsView.dart';
+import 'package:flutterMobileWeb/screens/Login/LoginPage.dart';
 
 class BodyError extends StatefulWidget {
   @override
@@ -143,11 +143,7 @@ class ListDisplay extends StatelessWidget {
               ],
             ),
             onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DetailsPostsView( profile: this.profile, 
-                                                                            post : post)),
-                );
+                Navigator.of(context).pushNamed(LoginPage.routeName);
             },
         )
        

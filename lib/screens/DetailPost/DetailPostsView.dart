@@ -4,19 +4,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterMobileWeb/data/PostFeed.dart';
-import 'package:flutterMobileWeb/data/Profile.dart';
 import 'package:flutterMobileWeb/widgets/Footer.dart';
 
 class DetailsPostsView extends StatelessWidget {
 
-  final Profile profile;
-  final PostFeed post;
+  static const routeName = '/detailsPost';
 
-  DetailsPostsView({this.profile, this.post});
+  PostFeed post;
+
+  DetailsPostsView();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final DetailsPostsArguments args = ModalRoute.of(context).settings.arguments;
+    post = args.postFeed;
+
     return MaterialApp (
       
         theme: ThemeData(
@@ -72,4 +75,10 @@ class DetailsPostsView extends StatelessWidget {
         })
     );
   }
+}
+
+class DetailsPostsArguments {
+  final PostFeed postFeed;
+
+  DetailsPostsArguments(this.postFeed);
 }

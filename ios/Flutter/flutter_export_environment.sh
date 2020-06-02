@@ -2,7 +2,7 @@
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/moises/ProyectosFlutter/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/moises/ProyectosFlutter/flutter_mobile_web_profile"
-export "FLUTTER_TARGET=lib/main.dart"
+export "FLUTTER_TARGET=/Users/moises/ProyectosFlutter/flutter_mobile_web_profile/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "OTHER_LDFLAGS=$(inherited) -framework Flutter"
@@ -10,5 +10,5 @@ export "FLUTTER_FRAMEWORK_DIR=/Users/moises/ProyectosFlutter/flutter/bin/cache/a
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1.0.0"
 export "DART_OBFUSCATION=false"
-export "TRACK_WIDGET_CREATION=false"
+export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

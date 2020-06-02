@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterMobileWeb/screens/DetailPostView/DetailPostsView.dart';
-import 'package:flutterMobileWeb/screens/Home/Home.dart';
+import 'package:flutterMobileWeb/screens/DetailPost/DetailPostsView.dart';
+import 'package:flutterMobileWeb/screens/Home/HomePage.dart';
+import 'package:flutterMobileWeb/screens/Login/LoginPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,11 +27,11 @@ class _AppState extends State<MyApp> {
     return MaterialApp(
                   theme: createThemeData(),
                   routes: <String, WidgetBuilder> {
-                    'home': (BuildContext context) => Home(),
-                    'detailsPost' : (BuildContext context) => DetailsPostsView(  profile: null, 
-                                                                                  post : null),
+                    HomePage.routeName : (BuildContext context) => HomePage(),
+                    DetailsPostsView.routeName : (BuildContext context) => DetailsPostsView(),
+                    LoginPage.routeName : (BuildContext context) => LoginPage(),
                   },
-                  initialRoute: 'home',
+                  initialRoute: '/home',
     );
   }
 

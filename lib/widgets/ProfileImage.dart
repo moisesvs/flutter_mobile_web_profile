@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class ProfileImage extends StatelessWidget {
 
+    String url;
+
+    ProfileImage ({url});
+
     @override
     Widget build (BuildContext ctxt) {
       return
@@ -14,7 +18,7 @@ class ProfileImage extends StatelessWidget {
                         image: new DecorationImage(
                             fit: BoxFit.fill,
                             image: new NetworkImage(
-                                "https://i.imgur.com/BoN9kdC.png")
+                                url)
                         )
                     ));
     }
